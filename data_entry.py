@@ -12,8 +12,8 @@ layout = [
     [sg.Text('Please name Excel File:')],
     [sg.Text('Excel Filename', size=(15,1)), sg.InputText(key='Filename')],
     [sg.Text('Please fill out the following fields:')],
-    [sg.Text('Name', size=(15,1)), sg.InputText(key='Name')],
-    [sg.Text('City', size=(15,1)), sg.InputText(key='City')],
+    [sg.Text('Floorplan', size=(15,1)), sg.InputText(key='FP')],
+    [sg.Text('# of Units', size=(15,1)), sg.InputText(key='unitNum')],
     [sg.Text('Favorite Colour', size=(15,1)), sg.Combo(['Green', 'Blue', 'Red'], key='Favorite Colour')],
     [sg.Text('I speak', size=(15,1)),
                             sg.Checkbox('German', key='German'),
@@ -58,8 +58,15 @@ while True:
         keys_to_omit = ['Filename']  # Replace with keys you want to omit
         new_record_data = {key: values[key] for key in values if key not in keys_to_omit}
 
+        new_record_data['test'] = "TESTING ADDING VALUE"
+
         new_record = pd.DataFrame(new_record_data, index=[0])
+
         df = pd.concat([df, new_record], ignore_index=False)
+        for index, row in df.iterrows():
+            for column, value in row.items():
+                print(f"{column}: {value}")
+                
         df.to_excel(excelName, index=False)  # This will create the file if it doesn't exist
         sg.popup('Data saved!')
         clear_input()
