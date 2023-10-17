@@ -71,3 +71,52 @@ while True:
         sg.popup('Data saved!')
         clear_input()
 window.close()
+
+
+
+# import PySimpleGUI as sg
+# import pandas as pd
+
+# # Initialize an empty DataFrame to store user input
+# data = pd.DataFrame(columns=["Value"])
+
+# # Define the PySimpleGUI layout
+# layout = [
+#     [sg.Text("Enter a value:"), sg.InputText(key="value"), sg.Button("Submit")],
+#     [sg.Text("Calculate Percentage for Submission:"), sg.Input(key="submission_index"), sg.Button("Calculate Percentage")],
+#     [sg.Button("Exit")],
+# ]
+
+# # Create the window
+# window = sg.Window("Data Entry and Calculation", layout)
+
+# while True:
+#     event, values = window.read()
+
+#     if event == sg.WIN_CLOSED or event == "Exit":
+#         break
+
+#     if event == "Submit":
+#         try:
+#             # Add the entered value to the DataFrame
+#             value = float(values["value"])
+#             data = data.append({"Value": value}, ignore_index=True)
+#             sg.popup(f"Value {value} added.")
+#             window["value"].update("")  # Clear the input field
+#         except ValueError:
+#             sg.popup("Please enter a valid numeric value.")
+
+#     if event == "Calculate Percentage":
+#         try:
+#             submission_index = int(values["submission_index"])
+#             if 0 <= submission_index < len(data):
+#                 selected_value = data.iloc[submission_index]["Value"]
+#                 total = data["Value"].sum()
+#                 percentage = (selected_value / total) * 100
+#                 sg.popup(f"Percentage for Submission {submission_index}: {percentage:.2f}%")
+#             else:
+#                 sg.popup("Invalid submission index.")
+#         except ValueError:
+#             sg.popup("Please enter a valid submission index.")
+
+# window.close()
